@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>docfw-cmp — Documentation Framework Comparison</title>
+  <meta name="description" content="A side-by-side comparison of documentation-site frameworks — real, running example sites (Nextra, Fumadocs, Docus, Nuxt UI, Starlight, Docusaurus, VitePress) evaluated against a fixed set of criteria.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Ctext%20y%3D%22.9em%22%20font-size%3D%2290%22%3E%F0%9F%93%84%3C%2Ftext%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <span class="brand">docfw-cmp</span>
+      <a class="header-link" href="https://github.com/daiksud/docfw-cmp" target="_blank" rel="noopener noreferrer">
+        <svg class="icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        View on GitHub
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>docfw-cmp</h1>
+        <p class="tagline">Documentation Framework Comparison</p>
+        <p class="hero-desc">
+          A side-by-side comparison of documentation-site frameworks — not just a feature
+          checklist, but real, running example sites you can click through. Each example is
+          built with a different framework and evaluated against the same
+          <a href="#criteria">fixed set of criteria</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="frameworks" id="frameworks">
+      <div class="container">
+        <h2>Frameworks</h2>
+        <p class="section-desc">Seven documentation frameworks, each built on a different meta-framework.</p>
+
+        <div class="card-grid">
+
+          <!-- Nextra — ACTIVE -->
+          <article class="card card--active">
+            <div class="card-body">
+              <div class="card-head">
+                <h3 class="card-name">Nextra <span class="card-framework">(Next.js)</span></h3>
+                <span class="badge badge--active">Available</span>
+              </div>
+              <p class="card-desc">MDX-powered docs framework from the creators of SWR, built directly on the Next.js App Router.</p>
+              <div class="card-footer">
+                <a class="card-link-main" href="./nextra/en/">View example →</a>
+                <a class="card-link-home" href="https://nextra.site/" target="_blank" rel="noopener noreferrer">Homepage ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Fumadocs — coming soon -->
+          <article class="card card--soon">
+            <div class="card-body">
+              <div class="card-head">
+                <h3 class="card-name">Fumadocs <span class="card-framework">(Next.js)</span></h3>
+                <span class="badge badge--soon">Coming soon</span>
+              </div>
+              <p class="card-desc">Flexible, headless documentation framework for Next.js with first-class MDX support.</p>
+              <div class="card-footer">
+                <span class="card-link-main card-link-main--disabled" aria-disabled="true">Not built yet</span>
+                <a class="card-link-home" href="https://www.fumadocs.dev/" target="_blank" rel="noopener noreferrer">Homepage ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Docus — coming soon -->
+          <article class="card card--soon">
+            <div class="card-body">
+              <div class="card-head">
+                <h3 class="card-name">Docus <span class="card-framework">(Nuxt)</span></h3>
+                <span class="badge badge--soon">Coming soon</span>
+              </div>
+              <p class="card-desc">Opinionated, all-in-one documentation theme built on Nuxt Content, ready out of the box.</p>
+              <div class="card-footer">
+                <span class="card-link-main card-link-main--disabled" aria-disabled="true">Not built yet</span>
+                <a class="card-link-home" href="https://docus.dev/" target="_blank" rel="noopener noreferrer">Homepage ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Nuxt UI — coming soon -->
+          <article class="card card--soon">
+            <div class="card-body">
+              <div class="card-head">
+                <h3 class="card-name">Nuxt UI <span class="card-framework">(Nuxt)</span></h3>
+                <span class="badge badge--soon">Coming soon</span>
+              </div>
+              <p class="card-desc">Documentation template built on the Nuxt UI component library and Nuxt Content.</p>
+              <div class="card-footer">
+                <span class="card-link-main card-link-main--disabled" aria-disabled="true">Not built yet</span>
+                <a class="card-link-home" href="https://docs-template.nuxt.dev/" target="_blank" rel="noopener noreferrer">Homepage ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Starlight — coming soon -->
+          <article class="card card--soon">
+            <div class="card-body">
+              <div class="card-head">
+                <h3 class="card-name">Starlight <span class="card-framework">(Astro)</span></h3>
+                <span class="badge badge--soon">Coming soon</span>
+              </div>
+              <p class="card-desc">Astro's official full-featured documentation theme, fast and content-focused.</p>
+              <div class="card-footer">
+                <span class="card-link-main card-link-main--disabled" aria-disabled="true">Not built yet</span>
+                <a class="card-link-home" href="https://starlight.astro.build/" target="_blank" rel="noopener noreferrer">Homepage ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Docusaurus — coming soon -->
+          <article class="card card--soon">
+            <div class="card-body">
+              <div class="card-head">
+                <h3 class="card-name">Docusaurus <span class="card-framework">(React)</span></h3>
+                <span class="badge badge--soon">Coming soon</span>
+              </div>
+              <p class="card-desc">Meta's battle-tested static site generator, purpose-built for documentation.</p>
+              <div class="card-footer">
+                <span class="card-link-main card-link-main--disabled" aria-disabled="true">Not built yet</span>
+                <a class="card-link-home" href="https://docusaurus.io/" target="_blank" rel="noopener noreferrer">Homepage ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- VitePress — coming soon -->
+          <article class="card card--soon">
+            <div class="card-body">
+              <div class="card-head">
+                <h3 class="card-name">VitePress <span class="card-framework">(Vue)</span></h3>
+                <span class="badge badge--soon">Coming soon</span>
+              </div>
+              <p class="card-desc">Vue's lightweight, Vite-powered static site generator for docs and blogs.</p>
+              <div class="card-footer">
+                <span class="card-link-main card-link-main--disabled" aria-disabled="true">Not built yet</span>
+                <a class="card-link-home" href="https://vitepress.dev/" target="_blank" rel="noopener noreferrer">Homepage ↗</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="criteria" id="criteria">
+      <div class="container">
+        <h2>Comparison Criteria</h2>
+        <p class="section-desc">Every example site is evaluated against the same fixed set of criteria:</p>
+
+        <ol class="criteria-grid">
+          <li class="criteria-item">GFM compatibility <small>(especially GitHub Alerts)</small></li>
+          <li class="criteria-item">Markdown extensions</li>
+          <li class="criteria-item">MDX, MDC</li>
+          <li class="criteria-item">Mermaid support</li>
+          <li class="criteria-item">Automatic sidebar generation</li>
+          <li class="criteria-item">Site search (local search)</li>
+          <li class="criteria-item">Internationalization (i18n)</li>
+          <li class="criteria-item">Dark mode support</li>
+          <li class="criteria-item">Automatic image optimization</li>
+          <li class="criteria-item">Static Site Generation</li>
+          <li class="criteria-item">Freedom in <code>docs</code> directory placement</li>
+          <li class="criteria-item">Asset placement</li>
+          <li class="criteria-item">Repository / directory complexity</li>
+          <li class="criteria-item">Customization flexibility <small>(especially styling / CSS)</small></li>
+          <li class="criteria-item">Documentation richness</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>
+        <a href="https://github.com/daiksud/docfw-cmp" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
