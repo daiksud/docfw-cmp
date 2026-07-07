@@ -32,6 +32,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          # Nextra reads git history per content file to render each page's
+          # "Last updated on" date. The default shallow clone (fetch-depth: 1)
+          # has no history to read, so every page's timestamp would be
+          # silently blank on the deployed site. See:
+          # https://github.com/actions/checkout#fetch-all-history-for-all-tags-and-branches
+          fetch-depth: 0
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
