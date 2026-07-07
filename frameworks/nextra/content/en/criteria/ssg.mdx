@@ -1,0 +1,37 @@
+---
+title: Static Site Generation
+---
+
+export async function Stars() {
+  let stars = 0
+  try {
+    const res = await fetch('https://api.github.com/repos/shuding/nextra')
+    const repo = await res.json()
+    stars = repo.stargazers_count || 0
+  } catch {
+    /* ignore (e.g. CI rate limits) */
+  }
+  return <b>{stars.toLocaleString()}</b>
+}
+
+# Static Site Generation
+
+For this evaluation, it is worth confirming directly that Nextra pages are statically rendered by Next.js at build time. Static HTML is excellent for CDN hosting, fast page loads, and SEO because visitors receive prebuilt content.
+
+> Nextra has <Stars /> stars on GitHub!
+
+The number above is fetched at **build time** by an MDX server component and baked into the generated static HTML.
+
+```jsx
+export async function Stars() {
+  let stars = 0
+  try {
+    const res = await fetch('https://api.github.com/repos/shuding/nextra')
+    const repo = await res.json()
+    stars = repo.stargazers_count || 0
+  } catch {
+    /* ignore (e.g. CI rate limits) */
+  }
+  return <b>{stars.toLocaleString()}</b>
+}
+```

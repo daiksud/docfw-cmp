@@ -1,0 +1,29 @@
+---
+title: MDX と MDC
+---
+
+import { Counter } from '../../../components/counter'
+import { Callout } from 'nextra/components'
+
+# MDX と MDC
+
+MDX は Markdown と JSX を組み合わせたもので、通常の文章・リスト・コード例と並べて React
+コンポーネントをドキュメントに描画できます。
+
+<Callout type="info">
+  このコールアウトは `nextra/components` からインポートし、MDX 内で直接レンダリングしています。
+</Callout>
+
+## インタラクティブなコンポーネント
+
+以下のボタンは React の状態を持つクライアントコンポーネントです。クリックすると、MDX
+ページにインタラクティブな UI を含められることが確認できます。
+
+<Counter label="クリック回数" />
+
+## MDC
+
+MDC は Nuxt Content が使用する Markdown Components 構文で、`::alert` のようなブロック
+コンポーネント形式を含みます。Nextra は MDC 構文をサポートしていません。Nextra では
+代わりに MDX を使用します。上記のカウンターやコールアウトのように、React コンポーネントを
+インポートして JSX としてレンダリングします。

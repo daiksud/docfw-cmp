@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Nextra — docfw-cmp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="refresh" content="0; url=./en/" />
+  <script>
+    (function () {
+      var langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || ''];
+      var preferJa = langs.some(function (l) { return /^ja/i.test(l); });
+      location.replace(preferJa ? './ja/' : './en/');
+    })();
+  </script>
+</head>
+<body>
+  <p>Redirecting to the docs… If you are not redirected automatically, <a href="./en/">click here</a> (or <a href="./ja/">日本語はこちら</a>).</p>
+</body>
+</html>

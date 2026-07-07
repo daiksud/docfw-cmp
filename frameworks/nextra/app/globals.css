@@ -1,0 +1,22 @@
+/*
+ * Global CSS customization demo.
+ *
+ * Nextra / `nextra-theme-docs` expose CSS custom properties and stable class
+ * names (prefixed with `nextra-`) that you can override from your own global
+ * stylesheet. This file is imported once in `app/[lang]/layout.tsx`.
+ */
+
+:root {
+  /* Override the theme's primary accent color (used by links, active items). */
+  --nextra-primary-hue: 280deg;
+  --nextra-primary-saturation: 90%;
+}
+
+/* A custom utility class used by the customization demo page. */
+.custom-gradient-box {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  color: white;
+  font-weight: 600;
+  background: linear-gradient(135deg, #6d28d9, #db2777);
+}

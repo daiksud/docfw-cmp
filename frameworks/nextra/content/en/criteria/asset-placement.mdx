@@ -1,0 +1,14 @@
+---
+title: Asset Placement
+---
+
+# Asset Placement
+
+Nextra supports at least two asset placement strategies, and pages can mix both as needed:
+
+- **`public/` for stable root-relative URLs.** Files placed in `public/` are served from the site root regardless of which page references them, which is this project's `public/nextra-demo.png`. Passing a plain string `src="/nextra-demo.png"` to `next/image` does **not** automatically get `basePath` prepended ([per the Next.js docs](https://nextjs.org/docs/app/api-reference/config/next-config-js/basePath#images)) and would 404 once deployed under `/docfw-cmp/nextra`. This project instead `import`s the file as a module (`import nextraDemo from '../../../public/nextra-demo.png'`), which Next.js's build pipeline resolves and `basePath`-prefixes automatically, in both dev and production.
+- **Co-located assets next to the content that uses them.** An image can live alongside its MDX file in an `_assets` folder and be referenced with a relative Markdown path, which is this project's `content/en/criteria/_assets/diagram.png`, referenced via `./_assets/diagram.png`.
+
+The tradeoff between the two is mainly about sharing versus locality: `public/` assets are easy to reuse across many pages and locales since every page can reach them via the same root-relative path, while co-located assets keep a page and its images together in the source tree, so they travel with the content if a page is renamed or moved to a different folder. Neither approach is enforced project-wide, so authors choose per page or per asset.
+
+See [Image Optimization](/en/criteria/image-optimization) for the live example rendering both images.

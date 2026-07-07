@@ -1,0 +1,21 @@
+---
+title: 画像の自動最適化
+---
+
+import Image from 'next/image'
+import nextraDemo from '../../../public/nextra-demo.png'
+
+# 画像の自動最適化
+
+Nextra は既定で `staticImage` が有効です。つまり通常の Markdown 画像は自動的に Next.js の
+`<Image>` を通じて配信され、`width`/`height` の手動指定なし、遅延読み込み、ぼかし
+プレースホルダー、レイアウトシフトの防止といった最適化がなされます。
+
+![最適化されたダイアグラム](./_assets/diagram.png)
+
+`next/image` を直接使い、propsを細かく制御することもできます:
+
+<Image src={nextraDemo} alt="Nextra banner" width={1200} height={630} />
+
+この2つの画像がこのプロジェクトでどこに配置されているかは
+[アセット配置](/ja/criteria/asset-placement) を参照してください。

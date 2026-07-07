@@ -1,0 +1,55 @@
+---
+title: Markdown拡張
+---
+
+# Markdown拡張
+
+Nextra には、コードブロック・脚注・数式など、技術文書に実用的な Markdown 拡張機能が
+含まれています。
+
+## シンタックスハイライト
+
+```jsx {4,6-8} filename="profile.jsx"
+export function Profile({ user }) {
+  const displayName = user.name ?? 'Anonymous'
+
+  return (
+    <article className="profile-card">
+      <h2>{displayName}</h2>
+      <p>{user.role}</p>
+    </article>
+  )
+}
+```
+
+## Diffブロック
+
+```diff
+ export const theme = {
+-  primary: 'blue',
++  primary: 'indigo',
++  radius: '0.75rem',
+ }
+```
+
+## プレーンなコードと折り返し
+
+```js
+const message = 'This plain JavaScript block demonstrates ordinary code rendering and can contain long lines that readers may inspect in the documentation UI.'
+console.log(message)
+```
+
+## 脚注
+
+脚注を使うと、本文を簡潔に保ちながら、興味のある読者のために詳細を残せます。[^1]
+
+## LaTeX
+
+LaTeX は `next.config.mjs` の `latex: true` で有効化されており、$\sqrt{a^2 + b^2}$ の
+ようなインライン数式が KaTeX でレンダリングされます。
+
+$$
+\sum_{i=1}^{n} i = \frac{n(n + 1)}{2}
+$$
+
+[^1]: これは脚注の定義で、ページ下部にレンダリングされます。

@@ -1,0 +1,39 @@
+---
+title: Running Locally
+---
+
+# Running Locally
+
+To inspect this Nextra evaluation yourself, install dependencies and run the
+site locally. The steps below reproduce the setup used to produce every page
+in this write-up.
+
+## Requirement
+
+- [Bun](https://bun.sh)
+
+## Install
+
+```sh
+bun install
+```
+
+## Develop
+
+```sh
+bun run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000). You will be redirected to
+your preferred locale (`/en` or `/ja`).
+
+## Build & start
+
+```sh
+bun run build
+bun run start
+```
+
+`bun run build` also runs the `postbuild` script, which generates the Pagefind
+search index into `public/_pagefind`. Search results are therefore only
+available after a production build (`bun run start`), not in development mode.

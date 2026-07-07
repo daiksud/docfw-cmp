@@ -1,0 +1,13 @@
+---
+title: Docs Directory Placement
+---
+
+# Docs Directory Placement
+
+## Placement freedom
+
+Content location and URL base path are configurable independently. The `contentDirBasePath` Nextra option (set via the `nextra()` wrapper in `next.config.mjs`) controls the path prefix under which files from the `content/` directory are served, separately from where that directory physically lives in the repository. This project sets `contentDirBasePath: '/'` (which also happens to be Nextra's default), so pages are served from the site root, but the same content tree could just as easily be mounted under a custom prefix such as `/docs` without moving a single file. In short, the `content/` folder's depth or location need not mirror the public URL structure.
+
+## Can `index.md` be replaced by `README.md`?
+
+No — this was verified empirically in this project. Nextra derives a page's route from the file's **basename**, and only a file literally named `index` (`index.md`/`index.mdx`) is treated as a folder's root page. A `README.md` file placed in the same folder does **not** become the directory index: it is instead served as an ordinary page whose route keeps the filename, reachable at `.../README`, while the folder's own root URL still returns a 404 because no `index` file exists there. This is a real, concrete difference from Docusaurus, which can use `README.md` directly as a folder's index page.

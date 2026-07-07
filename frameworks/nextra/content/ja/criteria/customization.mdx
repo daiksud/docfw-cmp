@@ -1,0 +1,26 @@
+---
+title: カスタマイズの柔軟性
+---
+
+# カスタマイズの柔軟性
+
+Nextra と `nextra-theme-docs` は、`--nextra-primary-hue` や `--nextra-primary-saturation`
+などの CSS カスタムプロパティと、`nextra-` 接頭辞の安定したクラス名を公開しており、
+自前のグローバルスタイルシートから上書きできます。
+
+このプロジェクトはルートレイアウトから `app/globals.css` を読み込んでいます。これにより
+プライマリアクセントカラーを紫に変更し、再利用可能な `.custom-gradient-box` ユーティリティ
+を定義しています:
+
+<div className="custom-gradient-box">このボックスは app/globals.css でスタイリングされています</div>
+
+```css
+:root {
+  --nextra-primary-hue: 280deg;
+  --nextra-primary-saturation: 90%;
+}
+```
+
+`mdx-components.ts` でテーマの `useMDXComponents` ヘルパーを使い、MDXコンポーネントを
+グローバルに上書き・拡張することもできます。Nextra 4 は Tailwind CSS 対応も同梱している
+ため、Tailwind も利用可能です。

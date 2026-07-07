@@ -1,0 +1,20 @@
+---
+title: CSS Customization
+---
+
+# CSS Customization
+
+Nextra and `nextra-theme-docs` expose CSS custom properties, such as `--nextra-primary-hue` and `--nextra-primary-saturation`, plus stable `nextra-`-prefixed class names that you can override from your own global stylesheet.
+
+This project loads `app/globals.css` from the root layout. It changes the primary accent to purple and defines a reusable `.custom-gradient-box` utility:
+
+<div className="custom-gradient-box">This box is styled by app/globals.css</div>
+
+```css
+:root {
+  --nextra-primary-hue: 280deg;
+  --nextra-primary-saturation: 90%;
+}
+```
+
+You can also override or extend MDX components globally in `mdx-components.ts` using the theme's `useMDXComponents` helper. Tailwind CSS is usable too, since Nextra 4 ships with Tailwind support.

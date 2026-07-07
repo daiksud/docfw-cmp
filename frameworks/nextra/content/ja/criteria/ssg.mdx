@@ -1,0 +1,40 @@
+---
+title: Static Site Generation
+---
+
+export async function Stars() {
+  let stars = 0
+  try {
+    const res = await fetch('https://api.github.com/repos/shuding/nextra')
+    const repo = await res.json()
+    stars = repo.stargazers_count || 0
+  } catch {
+    /* ignore (e.g. CI rate limits) */
+  }
+  return <b>{stars.toLocaleString()}</b>
+}
+
+# Static Site Generation
+
+Nextra のページは Next.js によってビルド時に静的にレンダリングされます。静的HTMLは
+CDNホスティング・高速なページ読み込み・SEOに優れています。訪問者はビルド済みの
+コンテンツを受け取るためです。
+
+> Nextra は GitHub で <Stars /> のスターを獲得しています！
+
+上記の数値は MDX サーバーコンポーネントによって**ビルド時**に取得され、生成される
+静的HTMLに焼き込まれます。
+
+```jsx
+export async function Stars() {
+  let stars = 0
+  try {
+    const res = await fetch('https://api.github.com/repos/shuding/nextra')
+    const repo = await res.json()
+    stars = repo.stargazers_count || 0
+  } catch {
+    /* ignore (e.g. CI rate limits) */
+  }
+  return <b>{stars.toLocaleString()}</b>
+}
+```
