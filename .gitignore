@@ -1,0 +1,12 @@
+# build output
+_site/
+
+# dependencies (safety net for framework sub-projects not yet scaffolded)
+node_modules/
+
+# editor
+.vscode/
+.idea/
+
+# misc
+.DS_Store
