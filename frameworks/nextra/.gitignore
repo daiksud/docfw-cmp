@@ -1,0 +1,17 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# pagefind search index (generated on build)
+public/_pagefind/
+
+# typescript
+next-env.d.ts
+
+# misc
+*.log
+.env*
+.DS_Store

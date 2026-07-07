@@ -1,0 +1,9 @@
+---
+title: Dark Mode
+---
+
+# Dark Mode
+
+Dark mode is powered by the `next-themes` package, which ships bundled as a dependency of `nextra-theme-docs` rather than something this project had to add separately. A theme toggle supporting light, dark, and system modes appears in the navbar/footer, letting visitors switch explicitly or defer to their OS preference.
+
+No extra application code was needed to wire this up beyond passing `themeSwitch` labels (for the dark/light/system options) to the `<Layout>` component in the root layout; theme persistence, the `<html>` class toggling, and system-preference detection are all handled internally by `next-themes` and the docs theme.

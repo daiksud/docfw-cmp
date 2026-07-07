@@ -1,0 +1,9 @@
+---
+title: Automatic Sidebar Generation
+---
+
+# Automatic Sidebar Generation
+
+Nextra builds the sidebar automatically from the `content/<locale>/` directory tree: every MDX file becomes a page entry, and every nested folder becomes a collapsible section without any manual navigation config. `_meta.ts` files (plain JS/TS modules, not JSON) let a page or folder override its display label, ordering, or icon while leaving the underlying route untouched, so authors can reorganize the sidebar independently of the URL structure.
+
+This site's own sidebar is generated exactly this way and is a live example rather than a mockup: the "Comparison Criteria" section you are browsing right now, and the "Features" and "Guide" sections alongside it, are each produced from a folder under `content/en/` plus that folder's `_meta.ts`. Adding a new MDX file under `content/en/criteria/` is enough for it to appear in the sidebar; no separate navigation file has to be updated by hand.

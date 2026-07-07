@@ -1,0 +1,24 @@
+---
+title: MDX & MDC
+---
+
+import { Counter } from '../../../components/counter'
+import { Callout } from 'nextra/components'
+
+# MDX & MDC
+
+MDX combines Markdown with JSX, so documentation can render React components alongside ordinary prose, lists, and code examples.
+
+<Callout type="info">
+  This callout is imported from `nextra/components` and rendered directly in MDX.
+</Callout>
+
+## Interactive component
+
+The button below is a client component with React state. Click it to prove that MDX pages can include interactive UI.
+
+<Counter label="Clicked" />
+
+## MDC
+
+MDC is the Markdown Components syntax used by Nuxt Content, including block component forms such as `::alert`. Nextra does not support MDC syntax. In Nextra, use MDX instead: import React components and render them as JSX, as shown with the counter and callout above.

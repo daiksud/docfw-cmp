@@ -1,0 +1,9 @@
+---
+title: Internationalization (i18n)
+---
+
+# Internationalization (i18n)
+
+Nextra's App Router i18n uses locale-prefixed routes, such as `/en` and `/ja`, backed by a `content/<locale>/` directory convention and a `[lang]` dynamic route segment that resolves each locale's pages independently. A `proxy.ts` file re-exports `proxy` from `nextra/locales`, which inspects the incoming request and redirects visitors to their preferred locale when they hit an unprefixed path. A `<LocaleSwitch>` component rendered in the navbar lets visitors change locales manually at any time, independent of that automatic detection.
+
+This very site demonstrates full parity: every page that exists in English also exists in Japanese, and vice versa, because incomplete i18n coverage would otherwise leave broken links or 404s behind whenever a visitor switches locales mid-navigation. This was an issue found and fixed during this project's development, which is why per-locale content coverage is treated as something to check explicitly rather than assume. English (`en`) is this site's default locale (`defaultLocale`), configured in `next.config.mjs`.

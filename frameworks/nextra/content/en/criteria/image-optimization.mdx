@@ -1,0 +1,18 @@
+---
+title: Image Optimization
+---
+
+import Image from 'next/image'
+import nextraDemo from '../../../public/nextra-demo.png'
+
+# Image Optimization
+
+Nextra enables `staticImage` by default. That means ordinary Markdown images are automatically served through Next.js `<Image>` with optimized output: no manual `width` or `height`, lazy loading, blur placeholders, and no layout shift.
+
+![Optimized diagram](./_assets/diagram.png)
+
+You can also use `next/image` directly when you want full control over props:
+
+<Image src={nextraDemo} alt="Nextra banner" width={1200} height={630} />
+
+See [Asset Placement](/en/criteria/asset-placement) for where these two images live in this project.

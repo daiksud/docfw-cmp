@@ -1,0 +1,53 @@
+---
+title: Markdown Extensions
+---
+
+# Markdown Extensions
+
+As part of the docfw-cmp comparison, this page demonstrates the practical Markdown extensions Nextra includes for technical documentation, including code blocks, footnotes, and math.
+
+## Syntax highlighting
+
+```jsx {4,6-8} filename="profile.jsx"
+export function Profile({ user }) {
+  const displayName = user.name ?? 'Anonymous'
+
+  return (
+    <article className="profile-card">
+      <h2>{displayName}</h2>
+      <p>{user.role}</p>
+    </article>
+  )
+}
+```
+
+## Diff blocks
+
+```diff
+ export const theme = {
+-  primary: 'blue',
++  primary: 'indigo',
++  radius: '0.75rem',
+ }
+```
+
+## Plain code and wrapping
+
+```js
+const message = 'This plain JavaScript block demonstrates ordinary code rendering and can contain long lines that readers may inspect in the documentation UI.'
+console.log(message)
+```
+
+## Footnotes
+
+Footnotes let you keep the main text concise while preserving detail for curious readers.[^1]
+
+## LaTeX
+
+LaTeX is enabled via `latex: true` in `next.config.mjs`, so inline math such as $\sqrt{a^2 + b^2}$ renders with KaTeX.
+
+$$
+\sum_{i=1}^{n} i = \frac{n(n + 1)}{2}
+$$
+
+[^1]: This is the footnote definition rendered at the bottom of the page.

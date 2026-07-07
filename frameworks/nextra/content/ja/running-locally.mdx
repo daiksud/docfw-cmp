@@ -1,0 +1,38 @@
+---
+title: ローカルでの実行
+---
+
+# ローカルでの実行
+
+この Nextra 評価をご自身で確認するには、依存関係をインストールしローカルで実行して
+ください。以下の手順は、本レポートの各ページを生成した環境を再現するものです。
+
+## 必要要件
+
+- [Bun](https://bun.sh)
+
+## インストール
+
+```sh
+bun install
+```
+
+## 開発
+
+```sh
+bun run dev
+```
+
+[http://localhost:3000](http://localhost:3000) を開くと、優先言語（`/en` または `/ja`）へ
+リダイレクトされます。
+
+## ビルドと起動
+
+```sh
+bun run build
+bun run start
+```
+
+`bun run build` は `postbuild` スクリプトも実行し、Pagefind の検索インデックスを
+`public/_pagefind` に生成します。そのため検索は本番ビルド（`bun run start`）後のみ有効に
+なり、開発モードでは無効です。

@@ -1,0 +1,103 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - framework: nextra
+            output: out
+          # Add future frameworks here as they're built, e.g.:
+          # - framework: fumadocs
+          #   output: out
+          # - framework: docusaurus
+          #   output: build
+          # - framework: vitepress
+          #   output: .vitepress/dist
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Install dependencies
+        working-directory: frameworks/${{ matrix.framework }}
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        working-directory: frameworks/${{ matrix.framework }}
+        run: bun run build
+
+      - name: Upload framework artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: site-${{ matrix.framework }}
+          path: frameworks/${{ matrix.framework }}/${{ matrix.output }}
+          if-no-files-found: error
+          # Defensive: some frameworks' static output may include dotfiles
+          # (e.g. .htaccess); this action excludes them by default.
+          include-hidden-files: true
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Download all framework artifacts
+        uses: actions/download-artifact@v8
+        with:
+          pattern: site-*
+          path: artifacts
+
+      - name: Assemble site
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          cp -r landing/. _site/
+          for dir in artifacts/site-*/; do
+            name="$(basename "$dir")"
+            framework="${name#site-}"
+            mkdir -p "_site/$framework"
+            cp -r "$dir." "_site/$framework/"
+          done
+          touch _site/.nojekyll
+          find _site -maxdepth 2
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+          # v4+ excludes dotfiles by default; _site/.nojekyll (created in the
+          # "Assemble site" step above) must be preserved so GitHub Pages
+          # skips Jekyll processing and serves `_next/`/`_pagefind/` as-is.
+          include-hidden-files: true
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

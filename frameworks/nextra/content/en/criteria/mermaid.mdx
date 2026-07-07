@@ -1,0 +1,40 @@
+---
+title: Mermaid
+---
+
+# Mermaid Diagrams
+
+Nextra renders `mermaid` code fences as diagrams with no extra page-level configuration.
+
+## Flowchart
+
+```mermaid
+flowchart TD
+  A[Write MDX] --> B[Run Nextra]
+  B --> C[Render page]
+  C --> D[Read docs]
+```
+
+## Sequence diagram
+
+```mermaid
+sequenceDiagram
+  participant Reader
+  participant Browser
+  participant Nextra
+  Reader->>Browser: Open docs page
+  Browser->>Nextra: Request route
+  Nextra-->>Browser: Rendered documentation
+```
+
+## Gantt chart
+
+```mermaid
+gantt
+  title Documentation evaluation
+  dateFormat  YYYY-MM-DD
+  section Content
+  Draft pages       :done,    draft, 2026-07-01, 2d
+  Review examples   :active,  review, after draft, 2d
+  Publish criteria  :         publish, after review, 1d
+```
