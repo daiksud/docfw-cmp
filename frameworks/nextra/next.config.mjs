@@ -29,7 +29,17 @@ export default withNextra({
   ...(isProd && {
     output: 'export',
     basePath: '/docfw-cmp/nextra',
-    images: { unoptimized: true }
+    images: { unoptimized: true },
+    // Static export writes each route to `<route>.html` by default (e.g.
+    // `out/en.html`), not `<route>/index.html`. GitHub Pages only resolves
+    // extensionless URLs to a matching `.html` file when there's no
+    // trailing slash; requesting the directory-style URL (e.g. `/en/`, the
+    // form users/search engines commonly use) 404s because `en/index.html`
+    // doesn't exist. `trailingSlash: true` makes both the export (writing
+    // `en/index.html` instead) and every generated link (which then
+    // includes the trailing slash) consistent with GitHub Pages' directory
+    // serving, fixing the 404.
+    trailingSlash: true
   }),
   i18n: {
     locales: ['en', 'ja'],
