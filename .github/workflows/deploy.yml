@@ -46,6 +46,14 @@ jobs:
         working-directory: frameworks/${{ matrix.framework }}
         run: bun run build
 
+      - name: Tag artifact with framework name
+        # Makes each artifact self-describing so the deploy job can discover
+        # which framework it belongs to regardless of how download-artifact
+        # lays out the downloaded directories (see deploy job's "Assemble
+        # site" step for details).
+        working-directory: frameworks/${{ matrix.framework }}
+        run: printf '%s' "${{ matrix.framework }}" > "${{ matrix.output }}/.docfw-framework"
+
       - name: Upload framework artifact
         uses: actions/upload-artifact@v7
         with:
@@ -77,12 +85,20 @@ jobs:
           set -euo pipefail
           mkdir -p _site
           cp -r landing/. _site/
-          for dir in artifacts/site-*/; do
-            name="$(basename "$dir")"
-            framework="${name#site-}"
+          # actions/download-artifact extracts a single matched artifact flat
+          # into "artifacts/" but nests 2+ matched artifacts under
+          # "artifacts/<artifact-name>/" - so we can't assume a fixed
+          # directory shape here. Instead, each framework's artifact is
+          # self-describing (see build job's "Tag artifact with framework
+          # name" step): discover framework roots by locating that marker
+          # file wherever it landed.
+          while IFS= read -r -d '' marker; do
+            root="$(dirname "$marker")"
+            framework="$(cat "$marker")"
             mkdir -p "_site/$framework"
-            cp -r "$dir." "_site/$framework/"
-          done
+            cp -r "$root/." "_site/$framework/"
+          done < <(find artifacts -name '.docfw-framework' -print0)
+          find _site -name '.docfw-framework' -delete
           touch _site/.nojekyll
           find _site -maxdepth 2
 
