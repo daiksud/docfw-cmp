@@ -75,4 +75,5 @@ if grep -R -n -E --include='*.html' \
   exit 1
 fi
 
-printf 'Verified 38 mirrored source and directory-style built routes.\n'
+route_count="$(source_routes frameworks/nextra/content mdx | awk 'END { print NR }')"
+printf 'Verified %s mirrored source and directory-style built routes.\n' "$route_count"

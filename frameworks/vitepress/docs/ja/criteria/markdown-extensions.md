@@ -19,7 +19,7 @@ criteria: markdown-extensions
 > base を含む URL でプレビューすることが重要です。
 
 > [!WARNING]
-> Markdown の脚注 `[^1]` は標準拡張としては保証されません。必要なら Markdown 設定にプラグインを追加します。
+> Markdown の脚注 `[^1]` は VitePress の標準拡張ではありません。このサンプルでは `markdown-it-footnote` プラグインを追加して有効化しています。
 
 > [!CAUTION]
 > 未検証の HTML や Vue テンプレートをそのまま入力しないでください。
@@ -60,4 +60,4 @@ $$
 \sum_{i=1}^{n} i = \frac{n(n + 1)}{2}
 $$
 
-脚注はこの構成では専用プラグインなしに有効化していません。数式は設定済みの MathJax によるものですが、脚注の要件とは別に判断してください。
+脚注はこの構成では `markdown-it-footnote` プラグインで有効化しています。これは VitePress の標準機能ではありません。数式は設定済みの MathJax によるもので、脚注とは別の追加機能として判断してください。

@@ -50,7 +50,7 @@ function switchFramework(event: Event) {
       @change="switchFramework"
     >
       <option value="nextra">Nextra</option>
-      <option value="vitepress" selected>VitePress</option>
+      <option value="vitepress">VitePress</option>
     </select>
   </label>
 </template>

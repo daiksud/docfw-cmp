@@ -6,14 +6,13 @@ description: Install, develop, build, and preview this VitePress site with Bun.
 
 # Running Locally
 
-Run these commands from `frameworks/vitepress`. The only prerequisite is
-[Bun](https://bun.sh/).
+Run these commands from `frameworks/vitepress`. The prerequisites are
+Node.js 22.12.0 or later and [Bun](https://bun.sh/). From the repository root,
+`mise install` installs the pinned versions used by this project.
 
 ## Install dependencies
 
-```
-
-This script runs `vitepress dev .`.sh
+```sh
 bun install
 ```
 
