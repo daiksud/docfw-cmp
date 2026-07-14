@@ -1,7 +1,4 @@
 const dictionary = {
-  logo: {
-    title: 'Document Framework Comparison'
-  },
   banner: 'This site evaluates Nextra for the docfw-cmp document framework comparison project.',
   backToTop: 'Scroll to top',
   tocTitle: 'On This Page',
@@ -10,6 +7,9 @@ const dictionary = {
   dark: 'Dark',
   light: 'Light',
   system: 'System',
+  frameworkSwitcher: {
+    label: 'Switch documentation framework'
+  },
   search: {
     placeholder: 'Search documentation…',
     emptyResult: 'No results found.',

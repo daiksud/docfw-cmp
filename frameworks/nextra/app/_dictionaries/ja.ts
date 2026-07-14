@@ -1,9 +1,6 @@
 import type { Dictionary } from './get-dictionary'
 
 const dictionary: Dictionary = {
-  logo: {
-    title: 'ドキュメントフレームワーク比較'
-  },
   banner: 'このサイトは docfw-cmp（ドキュメントフレームワーク比較）における Nextra の評価チャプターです。',
   backToTop: 'トップへ戻る',
   tocTitle: '目次',
@@ -12,6 +9,9 @@ const dictionary: Dictionary = {
   dark: 'ダーク',
   light: 'ライト',
   system: 'システム',
+  frameworkSwitcher: {
+    label: 'ドキュメントフレームワークを切り替え'
+  },
   search: {
     placeholder: 'ドキュメントを検索…',
     emptyResult: '検索結果が見つかりませんでした。',

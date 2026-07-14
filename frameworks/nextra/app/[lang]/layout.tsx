@@ -5,6 +5,7 @@ import { getPageMap } from 'nextra/page-map'
 import type { FC, ReactNode } from 'react'
 import { getDictionary } from '../_dictionaries/get-dictionary'
 import { getDirection } from '../_dictionaries/i18n-config'
+import { FrameworkSwitcher } from './_components/framework-switcher'
 import 'nextra-theme-docs/style.css'
 import 'katex/dist/katex.css'
 import '../globals.css'
@@ -38,17 +39,15 @@ const RootLayout: FC<LayoutProps> = async ({ children, params }) => {
   const navbar = (
     <Navbar
       logo={
-        <span>
-          <b>Nextra</b>{' '}
-          <span style={{ opacity: '60%' }}>{dictionary.logo.title}</span>
-        </span>
+        <>
+          <a href="/docfw-cmp/" aria-label="docfw-cmp project hub">
+            <b>docfw-cmp</b>
+          </a>
+          <FrameworkSwitcher label={dictionary.frameworkSwitcher.label} />
+        </>
       }
-      // Without this, the logo defaults to `href="/"` (-> `/docfw-cmp/nextra`
-      // after basePath), which has no matching route in the `[lang]` catch-all
-      // (every real route requires a locale segment). Next.js's <Link>
-      // auto-prefetches that href on every page and 404s. Point it at the
-      // current locale's home instead.
-      logoLink={`/${lang}`}
+      // Keep the literal hub href out of Navbar's basePath-aware Next Link.
+      logoLink={false}
       projectLink={docsRepositoryBase}
     >
       <LocaleSwitch />

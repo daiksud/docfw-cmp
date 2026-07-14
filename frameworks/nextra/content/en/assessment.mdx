@@ -1,0 +1,84 @@
+---
+title: Assessment
+---
+
+# Nextra Assessment
+
+This page separates **hands-on impressions (subjective)** from **evidence**
+observed in this repository and public project history.
+
+## Bottom line
+
+> **Hands-on impression (subjective):** Nextra delivered a polished
+> documentation theme, UX, and color system, and its static-export image
+> authoring and layout behavior felt good. It is a strong fit for teams already
+> choosing Next.js and React that accept the integration and export trade-offs.
+
+## Strengths
+
+- **Hands-on impression (subjective):** The default Docs theme feels polished
+  without concealing customization options.
+- **Evidence:** This sample emits prerendered static HTML and supports
+  multilingual content, local Pagefind search, dark mode, and MDX components.
+- **Evidence:** Static imports and `staticImage` retain dimensions and stable
+  lazy-loading/layout behavior, even though this deployment does not run the
+  Next.js image optimizer.
+
+## Concerns and trade-offs
+
+- **Hands-on impression (subjective):** The quick start was materially more
+  involved than VitePress here: it combines Next.js, React, Nextra, and its
+  theme with configuration and App Router layout/catch-all/MDX wiring. This
+  bilingual static Pages sample additionally needs dictionaries, a redirect
+  workaround, Pagefind, and export configuration. That is a finding from this
+  build, not a claim that every Nextra project is difficult.
+- **Hands-on impression (subjective):** Official docs cover core Docs/Blog
+  setup and API pages, but deep customization and migration details were sparse
+  enough in this evaluation to require examples, source, and issue history.
+  Start with the [Blog Theme guide](https://nextra.site/docs/blog-theme/start)
+  and its [source documentation tree](https://github.com/shuding/nextra/tree/main/docs/app/docs/blog-theme);
+  this does not imply the Blog Theme has a complete reference.
+- **Evidence:** Production uses `images: { unoptimized: true }`. Static image
+  metadata still helps authoring and layout, but this GitHub Pages export does
+  not resize images, convert formats, or make optimizer requests.
+
+## Shared findings with VitePress
+
+**Shared hands-on impression (subjective):** both default themes feel polished,
+and both expose useful customization paths.
+
+**Evidence from both samples:** both emit prerendered HTML and then hydrate;
+base text is in the HTML, while enhanced search, navigation, and components
+use JavaScript. English/Japanese parity is authored by this project, not
+automatic translation. Their ecosystems differ: Nextra brings Next/React and
+static-export constraints; VitePress commonly depends on third-party plugins.
+
+## Maintenance snapshot — 2026-07-11
+
+**Evidence (public history):** the latest stable release is
+[Nextra 4.6.1](https://github.com/shuding/nextra/releases/tag/nextra%404.6.1),
+published 2025-12-04, and repository commits continued through
+[2026-06-23](https://github.com/shuding/nextra/commit/d6e80e1dd627b781429a6ee989b15ebba688c8ea).
+For date accuracy, stable v3 was released on
+[2024-09-28](https://github.com/shuding/nextra/releases/tag/nextra%403.0.0)
+and stable v4 on
+[2025-01-13](https://github.com/shuding/nextra/releases/tag/nextra%404.0.0),
+not 2023/2024.
+
+Historical public contribution appears concentrated. Dimitri Postolov wrote
+that “I maintain this framework alone” in a
+[2024 discussion](https://github.com/shuding/nextra/issues/1421#issuecomment-1883375140)
+and described himself as one maintainer working in free time in
+[2025](https://github.com/shuding/nextra/pull/4090#issuecomment-2619355621).
+Public activity confirms continued development, but cannot prove the current
+bus factor or future availability.
+
+## Decision guidance
+
+Choose Nextra when Next.js/React alignment, the Docs experience, and MDX
+integration outweigh the added setup and static-export constraints. Prefer a
+leaner path when minimizing framework wiring matters more. Validate the
+documentation needed for any deep customization or migration before committing.
+This output is static multi-route output with SPA-style client transitions;
+no documented zero-JavaScript MPA mode was found, but hydration is not by
+itself an SEO disadvantage.

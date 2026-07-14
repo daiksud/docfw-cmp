@@ -313,7 +313,7 @@ svg {
   text-decoration: underline;
 }
 
-/* Active card (Nextra): the whole card is clickable via a "stretched link" —
+/* Active cards (Nextra, VitePress): the whole card is clickable via a "stretched link" —
    .card-link-main gets a full-card ::after so no anchors are nested. */
 
 .card--active {

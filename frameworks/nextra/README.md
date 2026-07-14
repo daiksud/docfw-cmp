@@ -5,7 +5,8 @@ a Document Framework Comparison project. It is a real, running Next.js +
 Nextra site whose content evaluates Nextra against the project's comparison
 criteria — see [`/en`](http://localhost:3000/en) after starting the dev
 server, or the full criteria write-up at `/en/criteria` (`/ja/criteria` for
-the Japanese mirror).
+the Japanese mirror). The concise hands-on assessment is at
+`/en/assessment` (`/ja/assessment` for Japanese).
 
 - **TypeScript** / **App Router** (Next.js 16)
 - **Internationalization (i18n)** — English (default) / 日本語, full parity
@@ -167,6 +168,7 @@ bun run start:bun   # bun --bun next start
 └── content/
     ├── en/                   # English content (default locale)
     │   ├── index.mdx          # Overview: docfw-cmp positioning, stack, links
+    │   ├── assessment.mdx     # Hands-on assessment, evidence, and guidance
     │   ├── running-locally.mdx
     │   └── criteria/          # One page per docfw-cmp comparison criterion
     └── ja/                   # Japanese content (full mirror of en/)
@@ -188,13 +190,13 @@ identical set of pages:
 | `search` | Pagefind local search (production-only) |
 | `i18n` | Locale routing, `proxy.ts`, `<LocaleSwitch>`, and this project's own en/ja parity |
 | `dark-mode` | `next-themes`-powered theme toggle |
-| `image-optimization` | Markdown images + `next/image` optimization |
+| `image-optimization` | Static-image authoring/layout; partial optimization in this Pages export |
 | `asset-placement` | `public/` vs. content-co-located assets |
 | `ssg` | A server component that `fetch`es **at build time** (bakes the GitHub star count into static HTML) |
 | `docs-directory` | `contentDirBasePath` placement freedom + the `README.md`-as-`index` finding |
-| `repo-complexity` | The moving parts this project wires up, rated "moderate" |
+| `repo-complexity` | The moving parts this bilingual static project wires up, more involved than VitePress in this assessment |
 | `customization` | CSS variable overrides and a custom class via `globals.css` |
-| `documentation-richness` | Nextra's own official documentation |
+| `documentation-richness` | Core official docs; deep customization may need examples, source, and issue history |
 
 Configuration enabled/added to support these demos:
 
@@ -203,8 +205,10 @@ Configuration enabled/added to support these demos:
 - **Mermaid**: no extra configuration needed. ```mermaid` code fences are
   automatically rendered as diagrams (`mermaid` / `@theguild/remark-mermaid`
   ship as Nextra dependencies).
-- **Image optimization**: `staticImage` is enabled by default in Nextra.
-  Markdown images are also optimized via `next/image`. Demo images are at
+- **Images**: `staticImage` and static imports retain dimensions and stable
+  authoring/layout behavior. This GitHub Pages export sets
+  `images: { unoptimized: true }`, so it does not perform Next.js resizing,
+  format conversion, or optimizer requests. Demo images are at
   `public/nextra-demo.png` and `content/<locale>/criteria/_assets/diagram.png`.
 - **CSS customization**: `app/globals.css` is imported in `layout.tsx`.
 
