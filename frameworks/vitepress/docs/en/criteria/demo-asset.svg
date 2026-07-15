@@ -1,0 +1,7 @@
+<!-- From Markdown in docs/en/criteria/, reference this co-located fixture as ./demo-asset.svg. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 120" role="img" aria-label="Comparison criteria graphic">
+  <rect width="240" height="120" rx="12" fill="#f8fafc"/>
+  <path d="M42 88 84 46l30 24 38-38 46 56H42Z" fill="#60a5fa"/>
+  <circle cx="152" cy="32" r="12" fill="#fbbf24"/>
+  <path d="M42 88h156" stroke="#2563eb" stroke-linecap="round" stroke-width="6"/>
+</svg>

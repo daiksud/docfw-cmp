@@ -2,39 +2,17 @@
 title: Static Site Generation
 ---
 
-export async function Stars() {
-  let stars = 0
-  try {
-    const res = await fetch('https://api.github.com/repos/shuding/nextra')
-    const repo = await res.json()
-    stars = repo.stargazers_count || 0
-  } catch {
-    /* ignore (e.g. CI rate limits) */
-  }
-  return <b>{stars.toLocaleString()}</b>
-}
-
 # Static Site Generation
 
-Nextra のページは Next.js によってビルド時に静的にレンダリングされます。静的HTMLは
-CDNホスティング・高速なページ読み込み・SEOに優れています。訪問者はビルド済みの
-コンテンツを受け取るためです。
+**根拠:** このサンプルはビルド時に事前レンダリング済みの静的HTMLを出力し、その後
+クライアントサイド遷移のために hydration します。本文はHTML内に存在するため、
+それ自体がSEO上の不利になるわけではありません。一方、検索・ナビゲーション・
+コンポーネントなどの拡張機能は JavaScript を使います。Nextra に文書化された
+JavaScript なしの MPA モードは見つかりませんでした。正確には、SPA風の
+クライアント遷移を備えた複数ルートの静的出力です。
 
-> Nextra は GitHub で <Stars /> のスターを獲得しています！
+静的HTMLはCDNホスティングに適し、訪問者にビルド済みのコンテンツを届けます。
+このページでは外部のビルド時データを使用せず、静的ビルドを決定的かつオフラインでも
+実行可能にしています。
 
-上記の数値は MDX サーバーコンポーネントによって**ビルド時**に取得され、生成される
-静的HTMLに焼き込まれます。
-
-```jsx
-export async function Stars() {
-  let stars = 0
-  try {
-    const res = await fetch('https://api.github.com/repos/shuding/nextra')
-    const repo = await res.json()
-    stars = repo.stargazers_count || 0
-  } catch {
-    /* ignore (e.g. CI rate limits) */
-  }
-  return <b>{stars.toLocaleString()}</b>
-}
-```
+VitePress との共通点は [評価](/ja/assessment) を参照してください。

@@ -7,15 +7,23 @@ import nextraDemo from '../../../public/nextra-demo.png'
 
 # 画像の自動最適化
 
-Nextra は既定で `staticImage` が有効です。つまり通常の Markdown 画像は自動的に Next.js の
-`<Image>` を通じて配信され、`width`/`height` の手動指定なし、遅延読み込み、ぼかし
-プレースホルダー、レイアウトシフトの防止といった最適化がなされます。
+**根拠:** Nextra の `staticImage` と静的 import は、画像の寸法情報に加え、安定した
+オーサリング、遅延読み込み、レイアウトの挙動を提供します。ただし、この GitHub
+Pages 向けデプロイの本番設定は `images: { unoptimized: true }` です。
 
-![最適化されたダイアグラム](./_assets/diagram.png)
+そのため、このエクスポートでは Next.js によるリサイズ、形式変換、オプティマイザへの
+リクエストは行われません。オーサリングとレイアウト上の利点は残りますが、この
+デプロイにおける画像最適化は**部分的**です。
+
+![安定した画像メタデータを持つダイアグラム](./_assets/diagram.png)
 
 `next/image` を直接使い、propsを細かく制御することもできます:
 
 <Image src={nextraDemo} alt="Nextra banner" width={1200} height={630} />
 
+> **ハンズオンでの所見（主観）:** このサンプルでは、静的エクスポート時の画像の
+> オーサリングとレイアウトの挙動は良好に感じられました。
+
 この2つの画像がこのプロジェクトでどこに配置されているかは
-[アセット配置](/ja/criteria/asset-placement) を参照してください。
+[アセット配置](/ja/criteria/asset-placement) を、デプロイ上のトレードオフは
+[評価](/ja/assessment) を参照してください。

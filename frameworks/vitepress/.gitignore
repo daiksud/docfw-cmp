@@ -1,0 +1,11 @@
+# VitePress generated files
+.vitepress/cache/
+.vitepress/dist/
+
+# dependencies
+node_modules/
+
+# misc
+*.log
+.env*
+.DS_Store

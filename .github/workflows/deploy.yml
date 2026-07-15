@@ -21,6 +21,8 @@ jobs:
         include:
           - framework: nextra
             output: out
+          - framework: vitepress
+            output: .vitepress/dist
           # Add future frameworks here as they're built, e.g.:
           # - framework: fumadocs
           #   output: out
@@ -33,9 +35,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
-          # Nextra reads git history per content file to render each page's
-          # "Last updated on" date. The default shallow clone (fetch-depth: 1)
-          # has no history to read, so every page's timestamp would be
+          # Nextra and VitePress read git history per content file to render
+          # each page's "Last updated on" date. The default shallow clone
+          # (fetch-depth: 1) has no history to read, so every page's timestamp would be
           # silently blank on the deployed site. See:
           # https://github.com/actions/checkout#fetch-all-history-for-all-tags-and-branches
           fetch-depth: 0
@@ -44,6 +46,11 @@ jobs:
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: 1.3.14
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.12.0
 
       - name: Install dependencies
         working-directory: frameworks/${{ matrix.framework }}
@@ -105,6 +112,7 @@ jobs:
             mkdir -p "_site/$framework"
             cp -r "$root/." "_site/$framework/"
           done < <(find artifacts -name '.docfw-framework' -print0)
+          ./scripts/verify-doc-parity _site/nextra _site/vitepress
           find _site -name '.docfw-framework' -delete
           touch _site/.nojekyll
           find _site -maxdepth 2

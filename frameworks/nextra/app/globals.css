@@ -12,6 +12,45 @@
   --nextra-primary-saturation: 90%;
 }
 
+/* Keep the comparison target beside the project brand in the navbar. */
+.framework-switcher {
+  display: inline-flex;
+  align-items: center;
+  margin-inline-start: 0.625rem;
+  padding-inline-start: 0.625rem;
+  border-inline-start: 1px solid
+    color-mix(in srgb, currentColor 18%, transparent);
+}
+
+.framework-switcher__select {
+  max-width: 7.5rem;
+  min-height: 2rem;
+  padding: 0.25rem 1.75rem 0.25rem 0.625rem;
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+  border-radius: 0.5rem;
+  color: inherit;
+  background-color: color-mix(
+    in srgb,
+    var(--x-color-nextra-bg, white) 88%,
+    transparent
+  );
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  cursor: pointer;
+}
+
+.framework-switcher__select:hover {
+  border-color: color-mix(in srgb, currentColor 42%, transparent);
+}
+
+.framework-switcher__select:focus-visible {
+  outline: 2px solid
+    hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) 45%);
+  outline-offset: 2px;
+}
+
 /* A custom utility class used by the customization demo page. */
 .custom-gradient-box {
   padding: 1.5rem;

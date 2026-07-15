@@ -1,5 +1,6 @@
 # build output
 _site/
+.local/
 
 # dependencies (safety net for framework sub-projects not yet scaffolded)
 node_modules/

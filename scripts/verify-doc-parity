@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+repo_root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$repo_root"
+
+nextra_output="${1:-frameworks/nextra/out}"
+vitepress_output="${2:-frameworks/vitepress/.vitepress/dist}"
+
+for output in "$nextra_output" "$vitepress_output"; do
+  if [[ ! -d "$output/en" || ! -d "$output/ja" ]]; then
+    printf 'Missing built locale directories under %s\n' "$output" >&2
+    exit 1
+  fi
+done
+
+source_routes() {
+  local root="$1"
+  local extension="$2"
+
+  find "$root/en" "$root/ja" -type f -name "*.${extension}" -print \
+    | sed -e "s#^${root}/##" \
+      -e "s#\.${extension}\$##" \
+      -e 's#/index$##' \
+      -e 's#$#/#' \
+    | LC_ALL=C sort
+}
+
+built_routes() {
+  local root="$1"
+
+  find "$root/en" "$root/ja" -type f -name index.html -print \
+    | sed -e "s#^${root}/##" -e 's#index.html$##' \
+    | LC_ALL=C sort
+}
+
+if ! diff -u \
+  <(source_routes frameworks/nextra/content mdx) \
+  <(source_routes frameworks/vitepress/docs md); then
+  printf 'Nextra and VitePress source page routes differ.\n' >&2
+  exit 1
+fi
+
+if ! diff -u \
+  <(source_routes frameworks/nextra/content mdx) \
+  <(built_routes "$nextra_output"); then
+  printf 'Nextra source and built routes differ.\n' >&2
+  exit 1
+fi
+
+if ! diff -u \
+  <(source_routes frameworks/vitepress/docs md) \
+  <(built_routes "$vitepress_output"); then
+  printf 'VitePress source and built routes differ.\n' >&2
+  exit 1
+fi
+
+if find "$vitepress_output/en" "$vitepress_output/ja" \
+  -type f -name '*.html' ! -name index.html -print -quit \
+  | grep -q .; then
+  printf 'VitePress emitted a non-directory HTML route.\n' >&2
+  exit 1
+fi
+
+if grep -R -n -E --include='*.html' \
+  '/docfw-cmp/vitepress/(en/en|ja/ja|en/\./|ja/\./)' "$vitepress_output"; then
+  printf 'VitePress contains a duplicated or non-canonical path segment.\n' >&2
+  exit 1
+fi
+
+if grep -R -n -E --include='*.html' \
+  'href="/docfw-cmp/vitepress/(en|ja)/[^"#?]*\.html' "$vitepress_output"; then
+  printf 'VitePress contains a non-canonical .html documentation href.\n' >&2
+  exit 1
+fi
+
+route_count="$(source_routes frameworks/nextra/content mdx | awk 'END { print NR }')"
+printf 'Verified %s mirrored source and directory-style built routes.\n' "$route_count"
